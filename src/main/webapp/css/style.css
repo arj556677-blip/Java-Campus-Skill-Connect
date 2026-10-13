@@ -1,0 +1,202 @@
+/* ==========================================================================
+   Campus SkillConnect — Global Stylesheet
+   Design System: Dark Mode, Glassmorphism, Vibrant Accents, High Text Contrast
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0b0f19;
+    --bg-card: rgba(22, 27, 38, 0.75);
+    --bg-card-hover: rgba(30, 38, 54, 0.85);
+    --accent-purple: #7f5af0;
+    --accent-green: #2cb67d;
+    --accent-cyan: #00f2fe;
+    --text-primary: #ffffff;
+    --text-muted: #cbd5e1;
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --glass-blur: blur(16px);
+}
+
+/* Global Body Styling */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 15%, rgba(127, 90, 240, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(44, 182, 125, 0.12) 0%, transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+}
+
+/* Global High Contrast Text Muted Override */
+.text-muted, small.text-muted, p.text-muted, span.text-muted, div.text-muted {
+    color: #cbd5e1 !important;
+}
+
+/* Form Controls & Select Options */
+.form-label {
+    color: #f1f5f9 !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+}
+
+.form-control, .form-select {
+    background-color: rgba(15, 20, 32, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.25s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--accent-purple) !important;
+    box-shadow: 0 0 0 4px rgba(127, 90, 240, 0.25) !important;
+    background-color: rgba(15, 20, 32, 0.95) !important;
+    color: #ffffff !important;
+}
+
+.form-control::placeholder {
+    color: #94a1b2 !important;
+    opacity: 1;
+}
+
+select option {
+    background-color: #0f1420 !important;
+    color: #ffffff !important;
+    padding: 10px;
+}
+
+/* Glassmorphism Navigation Bar */
+.navbar-custom {
+    background: rgba(11, 15, 25, 0.85) !important;
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 0.8rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.4rem;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Modern Glass Card */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    padding: 2.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(127, 90, 240, 0.35);
+}
+
+/* Premium Buttons */
+.btn-primary-custom {
+    background: linear-gradient(135deg, var(--accent-purple), #6246ea);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(127, 90, 240, 0.3);
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(127, 90, 240, 0.45);
+    color: #ffffff !important;
+}
+
+.btn-outline-custom {
+    background: transparent;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+    padding: 0.75rem 1.8rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-custom:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #ffffff !important;
+}
+
+/* High Contrast Badges */
+.badge-custom-purple {
+    background: rgba(127, 90, 240, 0.25);
+    color: #c4b5fd !important;
+    border: 1px solid rgba(127, 90, 240, 0.4);
+}
+
+.badge-custom-green {
+    background: rgba(44, 182, 125, 0.25);
+    color: #6ee7b7 !important;
+    border: 1px solid rgba(44, 182, 125, 0.4);
+}
+
+.badge-custom-blue {
+    background: rgba(59, 130, 246, 0.25);
+    color: #93c5fd !important;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.badge-custom-cyan {
+    background: rgba(6, 182, 212, 0.25);
+    color: #67e8f9 !important;
+    border: 1px solid rgba(6, 182, 212, 0.4);
+}
+
+/* Alert Banners */
+.alert-custom-danger {
+    background: rgba(239, 68, 68, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5 !important;
+    border-radius: 12px;
+}
+
+.alert-custom-success {
+    background: rgba(34, 197, 94, 0.2);
+    border: 1px solid rgba(34, 197, 94, 0.4);
+    color: #86efac !important;
+    border-radius: 12px;
+}

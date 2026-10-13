@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    web.xml — Web Application Deployment Descriptor
+    
+    This file tells Tomcat how to configure the web application.
+    We use Jakarta EE 6.0 namespace (for Tomcat 10.1).
+    
+    Note: Our Servlets use @WebServlet annotations, so we don't
+    need to declare them here. This file handles global settings
+    like welcome files and error pages.
+-->
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Campus Skill Connect</display-name>
+    <description>A Student Skill Exchange and Collaboration Platform</description>
+
+    <!-- ===== Default page when user visits the root URL ===== -->
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!-- ===== Error Pages ===== -->
+    <!-- Show a friendly error page instead of Tomcat's default stack trace -->
+
+    <!-- 404 - Page Not Found -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/views/error.jsp</location>
+    </error-page>
+
+    <!-- 500 - Internal Server Error -->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/views/error.jsp</location>
+    </error-page>
+
+    <!-- Catch-all for any unhandled Java exceptions -->
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/WEB-INF/views/error.jsp</location>
+    </error-page>
+
+</web-app>

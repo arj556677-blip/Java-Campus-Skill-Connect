@@ -1,0 +1,33 @@
+# Maven build output
+target/
+*.war
+*.ear
+*.class
+
+# Tomcat server binary directory
+apache-tomcat-*/
+apache-tomcat-10.1.59/
+
+# Maven wrapper / local cache
+.maven/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.settings/
+.project
+.classpath
+
+# Temporary and build scratch directories
+temp_docx/
+*.log
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+.DS_Store
