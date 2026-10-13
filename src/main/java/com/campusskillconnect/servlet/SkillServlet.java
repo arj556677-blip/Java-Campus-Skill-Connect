@@ -69,22 +69,21 @@ public class SkillServlet extends HttpServlet {
         String contextPath = request.getContextPath();
 
         try {
-            if ("add".equals(action)) {
-                handleAdd(request, loggedInUser);
-                response.sendRedirect(contextPath + "/skills?success=added");
-
-            } else if ("edit".equals(action)) {
-                handleEdit(request, loggedInUser);
-                response.sendRedirect(contextPath + "/skills?success=updated");
-
-            } else if ("delete".equals(action)) {
-                handleDelete(request, loggedInUser);
-                response.sendRedirect(contextPath + "/skills?success=deleted");
-
-            } else {
-                response.sendRedirect(contextPath + "/skills");
+            switch (action != null ? action : "") {
+                case "add" -> {
+                    handleAdd(request, loggedInUser);
+                    response.sendRedirect(contextPath + "/skills?success=added");
+                }
+                case "edit" -> {
+                    handleEdit(request, loggedInUser);
+                    response.sendRedirect(contextPath + "/skills?success=updated");
+                }
+                case "delete" -> {
+                    handleDelete(request, loggedInUser);
+                    response.sendRedirect(contextPath + "/skills?success=deleted");
+                }
+                default -> response.sendRedirect(contextPath + "/skills");
             }
-
         } catch (AppException e) {
             request.setAttribute("errorMessage", e.getMessage());
             doGet(request, response); // Re-render with error

@@ -43,23 +43,18 @@ public class DatabaseConnection implements Connectable {
      * file and registers the MySQL JDBC driver.
      */
     static {
-        try {
-            // Load properties file from the classpath
-            // (Maven puts src/main/resources/ on the classpath automatically)
-            Properties props = new Properties();
-            InputStream input = DatabaseConnection.class
-                    .getClassLoader()
-                    .getResourceAsStream("db.properties");
+        Properties props = new Properties();
+        try (InputStream input = DatabaseConnection.class
+                .getClassLoader()
+                .getResourceAsStream("db.properties")) {
 
             if (input == null) {
-                throw new RuntimeException(
-                    "ERROR: db.properties file not found!\n" +
-                    "Make sure it exists at: src/main/resources/db.properties"
-                );
+                throw new RuntimeException("""
+                    ERROR: db.properties file not found!
+                    Make sure it exists at: src/main/resources/db.properties""");
             }
 
             props.load(input);
-            input.close();
 
             // Read the values from the properties file
             url = props.getProperty("db.url");
@@ -67,15 +62,12 @@ public class DatabaseConnection implements Connectable {
             password = props.getProperty("db.password");
 
             // Load the MySQL JDBC driver class into memory
-            // This tells Java: "I want to use MySQL"
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             System.out.println("✓ Database driver loaded successfully.");
-            System.out.println("  URL: " + url);
+            System.out.println("  URL: " + props.getProperty("db.url"));
 
-        } catch (Exception e) {
-            // If anything goes wrong during initialization, the
-            // application cannot function — so we throw a fatal error.
+        } catch (java.io.IOException | ClassNotFoundException e) {
             throw new RuntimeException(
                 "Failed to initialize DatabaseConnection: " + e.getMessage(), e
             );
@@ -100,11 +92,10 @@ public class DatabaseConnection implements Connectable {
         try {
             return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-            throw new AppException(
-                "Failed to connect to database. Check db.properties settings.\n" +
-                "URL: " + url + "\nUser: " + user,
-                e
-            );
+            throw new AppException("""
+                Failed to connect to database. Check db.properties settings.
+                URL: %s
+                User: %s""".formatted(url, user), e);
         }
     }
 

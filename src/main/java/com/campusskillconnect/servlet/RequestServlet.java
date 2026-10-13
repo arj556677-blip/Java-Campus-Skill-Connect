@@ -67,22 +67,21 @@ public class RequestServlet extends HttpServlet {
         String contextPath = request.getContextPath();
 
         try {
-            if ("send".equals(action)) {
-                handleSend(request, loggedInUser);
-                response.sendRedirect(contextPath + "/requests?success=sent");
-
-            } else if ("accept".equals(action)) {
-                handleUpdateStatus(request, loggedInUser, "ACCEPTED");
-                response.sendRedirect(contextPath + "/requests?success=accepted");
-
-            } else if ("reject".equals(action)) {
-                handleUpdateStatus(request, loggedInUser, "REJECTED");
-                response.sendRedirect(contextPath + "/requests?success=rejected");
-
-            } else {
-                response.sendRedirect(contextPath + "/requests");
+            switch (action != null ? action : "") {
+                case "send" -> {
+                    handleSend(request, loggedInUser);
+                    response.sendRedirect(contextPath + "/requests?success=sent");
+                }
+                case "accept" -> {
+                    handleUpdateStatus(request, loggedInUser, "ACCEPTED");
+                    response.sendRedirect(contextPath + "/requests?success=accepted");
+                }
+                case "reject" -> {
+                    handleUpdateStatus(request, loggedInUser, "REJECTED");
+                    response.sendRedirect(contextPath + "/requests?success=rejected");
+                }
+                default -> response.sendRedirect(contextPath + "/requests");
             }
-
         } catch (AppException | NumberFormatException e) {
             request.setAttribute("errorMessage", e.getMessage());
             doGet(request, response);

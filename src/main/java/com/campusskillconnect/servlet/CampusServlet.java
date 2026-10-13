@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.campusskillconnect.dao.InstitutionDAO;
+import com.campusskillconnect.exception.AppException;
 import com.campusskillconnect.model.Campus;
 
 /**
@@ -67,7 +68,7 @@ public class CampusServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             out.print("{\"error\":\"Invalid institution ID\"}");
-        } catch (Exception e) {
+        } catch (AppException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             out.print("{\"error\":\"" + escapeJson(e.getMessage()) + "\"}");
         }

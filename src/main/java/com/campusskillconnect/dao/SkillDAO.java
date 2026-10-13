@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.campusskillconnect.exception.AppException;
-import com.campusskillconnect.model.ProficiencyLevel;
 import com.campusskillconnect.model.Skill;
 
 /**
